@@ -2,69 +2,67 @@
 
 I had the idea that something like this:
 
-```
+```js
 function renderLocalHTML(text: string, secondary: string) {
   return html`<html>
-      <head>
-        <title></title>
-        <meta charset="UTF-8" />
-      </head>
-      <body>
-        <p>Test text</p>
-${IF(secondary)}
-        <p>${trusted(secondary)}</p>
-${ELSEIF(text)}
-        <p>${text}</p>
-${ELSE()}
-        <p>Otherwise</p>
-${END()}
-        <svg xmlns="http://www.w3.org/2000/svg">
-          <rect
-            stroke="black"
-            fill="blue"
-            x="45px"
-            y="45px"
-            width="200px"
-            height="100px"
-            stroke-width="2"
-          />
-        </svg>
-      </body>
-    </html>`;
+    <head>
+      <title></title>
+      <meta charset="UTF-8" />
+    </head>
+    <body>
+      <p>Test text</p>
+      ${IF(secondary)}
+      <p>${trusted(secondary)}</p>
+      ${ELSEIF(text)}
+      <p>${text}</p>
+      ${ELSE()}
+      <p>Otherwise</p>
+      ${END()}
+      <svg xmlns="http://www.w3.org/2000/svg">
+        <rect
+          stroke="black"
+          fill="blue"
+          x="45px"
+          y="45px"
+          width="200px"
+          height="100px"
+          stroke-width="2"
+        />
+      </svg>
+    </body>
+  </html>`;
 }
 ```
 
 Would be more readable than:
 
-```
+```js
 function renderLocalHTML(text: string, secondary: string) {
   return html`<html>
-      <head>
-        <title></title>
-        <meta charset="UTF-8" />
-      </head>
-      <body>
-        <p>Test text</p>
-${secondary ? html`<p>${trusted(secondary)}</p>` : text ? html`<p>${text}</p>` : html`<p>Otherwise</p>` }
-        <p>${trusted(secondary)}</p>
-${ELSEIF(text)}
-        <p>${text}</p>
-${ELSE()}
-        <p>Otherwise</p>
-${END()}
-        <svg xmlns="http://www.w3.org/2000/svg">
-          <rect
-            stroke="black"
-            fill="blue"
-            x="45px"
-            y="45px"
-            width="200px"
-            height="100px"
-            stroke-width="2"
-          />
-        </svg>
-      </body>
-    </html>`;
+    <head>
+      <title></title>
+      <meta charset="UTF-8" />
+    </head>
+    <body>
+      <p>Test text</p>
+      ${secondary
+        ? html`<p>${trusted(secondary)}</p>`
+        : text
+        ? html`<p>${text}</p>`
+        : html`<p>Otherwise</p>`}
+      <svg xmlns="http://www.w3.org/2000/svg">
+        <rect
+          stroke="black"
+          fill="blue"
+          x="45px"
+          y="45px"
+          width="200px"
+          height="100px"
+          stroke-width="2"
+        />
+      </svg>
+    </body>
+  </html>`;
 }
 ```
 
