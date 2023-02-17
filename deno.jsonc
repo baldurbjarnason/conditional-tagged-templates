@@ -1,6 +1,5 @@
 {
   "tasks": {
-    "dev": "deno run --watch main.ts",
     "bench": "deno bench html_bench.ts --no-check"
   }
 }

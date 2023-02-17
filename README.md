@@ -66,6 +66,12 @@ function renderLocalHTML(text: string, secondary: string) {
 }
 ```
 
+- `IF`, `ELSEIF`, `ELSE`, and `END` are used to set up conditional blocks
+- `trusted` is used to inject safe HTML strings that don't need escaping
+- `html` otherwise auto-escapes strings using the excellent [`html-sloppy-escaper`](https://www.npmjs.com/package/html-sloppy-escaper)
+- `deno test` runs the tests
+- `deno task bench` runs the benchmark
+
 It's an experiment, not a project, so don't go expecting this to be published and maintained in any sort of way. I did include tests with full coverage and a naive benchmarking suite comparing it with other tagged templates and `JSX` approaches. It's roughly as fast as other tagged template and string template approaches and 4-40x faster than server-side `JSX` libraries.
 
 > Conditional tagged templates:
